@@ -1,0 +1,9 @@
+<div id="monthly-review" class="accounts-review">
+  <h2>Accounts review for <%= @month %></h2>
+
+  <% if @items.empty? %>
+    <p>No items bought in <%= @month %> to show.</p>
+  <% else %>
+    <%= render 'review' %>
+  <% end %>
+</div>

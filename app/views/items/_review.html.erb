@@ -1,0 +1,26 @@
+<p>
+  Accounts used: <span class="label-group">
+    <% @items.map { |item| item.account.name }.uniq.each do |account_name| %>
+      <span class="label"><%= account_name %></span>
+    <% end %>
+  </span>
+</p>
+
+<p>
+  Items bought: <span class="label-group">
+    <% @items.each do |item| %>
+      <span class="label"><%= item.name_and_quantity %></span>
+    <% end %>
+  </span>
+</p>
+
+<p>
+  Grand total: <span class="label"><%= Item.print_grand_total_of @items, false %></span><br>
+  Money:  <span class="label"><%= Item.print_left_money_after(@items, true) %></span> <%= Item.left_money_after(@items) > 0 ? 'left' : 'of debt' %>
+</p>
+
+<% if @old_items.present? %>
+  <p>
+    <%= @old_date.capitalize %> you spent <span class="label"><%= force_sign_for percentage_variation(Item.grand_total_of(@old_items), Item.grand_total_of(@items)).round(2) %>%</span> (aka <span class="label"><%= pretty_money_printing(Item.grand_total_of(@old_items) - Item.grand_total_of(@items), 'EUR', true) %></span> since <%= @old_date %> you spent <span class="label"><%= Item.print_grand_total_of @old_items, false %></span>) and you've bought <span class="label"><%= force_sign_for count_items(@items) - count_items(@old_items) %></span> things.
+  </p>
+<% end %>

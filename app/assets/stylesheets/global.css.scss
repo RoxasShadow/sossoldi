@@ -1,0 +1,54 @@
+@mixin border-radius($radius: 99px) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}
+
+.button {
+  @include border-radius;
+  @include transition( all .2s );
+  padding: 0.7em 1em;
+  text-transform: uppercase;
+  color: #fff !important;
+  border: none !important;
+  font-family: "Omnes", sans-serif;
+  cursor: pointer;
+}
+
+.button.teal {
+  background-color: #2fe7be;
+
+  &:hover {
+    @include transition( all .2s );
+    background-color: lighten(#2fe7be, 10%);
+  }
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.modal-form {
+  display: none;
+}
+
+.label {
+  @extend .btn;
+  @extend .button;
+  @extend .teal;
+
+  font-size: 12px;
+  line-height: 30px;
+  padding: 0.5em;
+  border-radius: 4px;
+}
+
+.label-group {
+  display: inline-block;
+}

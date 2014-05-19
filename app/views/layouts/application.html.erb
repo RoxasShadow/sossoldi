@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "Sossoldi" %></title>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= "#{controller_name} #{action_name}" %>">
+  <div id="container">
+    <div id="contents">
+      <%= yield %>
+    </div>
+  </div>
+
+  <%= render "facebook_init" unless user_logged_in? %>
+</body>
+</html>

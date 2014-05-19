@@ -1,0 +1,14 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+window.fbAsyncInit = ->
+  FB.init(appId: '<%= Rails.application.config.facebook[:app_id] %>', cookie: true)
+
+  $('a.facebook.signup').on click: (e) ->
+    e.preventDefault()
+
+    FB.login (response) ->
+      window.location = '/auth/facebook/callback' if response.authResponse
+    ,
+    scope: 'email,user_birthday'

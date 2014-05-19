@@ -1,0 +1,16 @@
+<div id="contents-header">
+  <h1>Your accounts</h1>
+
+  <%= link_to_modal 'New account', '#new-account-modal-form', class: 'btn button teal' %>
+
+  <%= link_to_modal 'This month', user_monthly_review_path(@user, :this_month, :the_previous_month), class: 'btn button teal' %>
+  <%= link_to_modal 'Today', user_review_path(@user, Date.today, Date.yesterday), class: 'btn button teal' %>
+</div>
+
+<div class="accounts-grid">
+  <% @accounts.sort_by { |account| account.name }.each do |account| %>
+    <%= render 'account', account: account %>
+  <% end %>
+  
+  <%= render 'new_account' %>
+</div>

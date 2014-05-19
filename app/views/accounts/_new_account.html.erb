@@ -1,0 +1,11 @@
+<div id="new-account-modal-form" class="new-account modal-form">
+  <h2>New account</h2>
+
+  <%= simple_form_for :account, data: { validate: 'parsley' } do |f| %>
+    <%= f.input :name     %>
+    <%= f.input :money    %>
+    <%= f.input :currency %>
+
+    <%= f.button :submit, 'Create account', class: 'button teal' %>
+  <% end %>
+</div>

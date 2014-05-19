@@ -1,0 +1,18 @@
+<div class="account">
+  <h2>
+    <%= account.name %>
+    <br>
+    <%= account.print_money %>
+    <% if account.left_money != account.money %>
+      (<%= "#{account.print_left_money} #{account.left_money > 0 ? 'left' : 'of debt'}" %>)
+    <% end %>
+  </h2>
+
+  <div class="items">
+    <% Item.bought_in(:this_month, account.items).each do |item| %>
+      <%= render 'item', item: item %>
+    <% end %>
+  </div>
+
+  <%= render 'new_item', account: account %>
+</div>

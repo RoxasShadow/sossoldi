@@ -1,0 +1,6 @@
+- Fix sorting for monthly_review
+- Decide what do with the currency
+- Improve money printing (@items.print_grand_total of something)
+- Add calendar widgets for reviews
+- Show homepage of the past
+- Fix `Item#bought_in` month parsing
