@@ -9,7 +9,7 @@
   </h2>
 
   <div class="items">
-    <% Item.bought_in(:this_month, account.items).each do |item| %>
+    <% account.items.bought_in(@month).each do |item| %>
       <%= render 'item', item: item %>
     <% end %>
   </div>

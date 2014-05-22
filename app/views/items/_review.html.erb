@@ -15,12 +15,11 @@
 </p>
 
 <p>
-  Grand total: <span class="label"><%= Item.print_grand_total_of @items, false %></span><br>
-  Money:  <span class="label"><%= Item.print_left_money_after(@items, true) %></span> <%= Item.left_money_after(@items) > 0 ? 'left' : 'of debt' %>
+  Grand total: <span class="label"><%= @items.print_grand_total(false) %></span><br>
 </p>
 
 <% if @old_items.present? %>
   <p>
-    <%= @old_date.capitalize %> you spent <span class="label"><%= force_sign_for percentage_variation(Item.grand_total_of(@old_items), Item.grand_total_of(@items)).round(2) %>%</span> (aka <span class="label"><%= pretty_money_printing(Item.grand_total_of(@old_items) - Item.grand_total_of(@items), 'EUR', true) %></span> since <%= @old_date %> you spent <span class="label"><%= Item.print_grand_total_of @old_items, false %></span>) and you've bought <span class="label"><%= force_sign_for count_items(@items) - count_items(@old_items) %></span> things.
+    In <%= @old_date %> you spent <span class="label"><%= force_sign_for percentage_variation(@old_items.grand_total, @items.grand_total.round(2)).round(2) %>%</span> (aka <span class="label"><%= pretty_money_printing(@old_items.grand_total - @items.grand_total, 'EUR', true) %></span> since <%= @old_date %> you spent <span class="label"><%= @old_items.print_grand_total(false) %></span>) and you've bought <span class="label"><%= force_sign_for @items.count_items - @old_items.count_items %></span> things.
   </p>
 <% end %>

@@ -5,6 +5,8 @@ class Account < ActiveRecord::Base
 
   belongs_to :user
   has_many   :items
+  
+  default_scope { order('created_at DESC') }
 
   # def money
   #   self.money || 0
@@ -24,18 +26,8 @@ class Account < ActiveRecord::Base
   end
 
   class << self
-    include CurrencyHelper
-
-    # def grand_total_of(accounts)
-    #   [].tap do |total|
-    #     accounts.each do |account|
-    #       total << account.items.sum(:total)
-    #     end
-    #   end.inject :+
-    # end
-
-    # def print_grand_total_of(accounts)
-    #   pretty_money_printing grand_total_of(accounts), accounts.first.currency
-    # end
+    def with_items_bought_in(month, accounts = all)
+      accounts.select { |account| account.items.bought_in(month).any? }
+    end
   end
 end

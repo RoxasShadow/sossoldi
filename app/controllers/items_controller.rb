@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   before_action :set_items,   except: %i(review monthly_review)
 
   def create
-    @items.create(item_params)
+    @items.create item_params
 
     redirect_to user_accounts_url(@user)
   end
@@ -24,11 +24,11 @@ class ItemsController < ApplicationController
 
   def monthly_review
     @month = params[:month].humanize.downcase
-    @items = Item.bought_in(params[:month].to_sym, @user.items).sort_by &:bought_at
+    @items = @user.items.bought_in params[:month]
 
     if params[:old_month].present?
       @old_date  = params[:old_month].humanize.downcase
-      @old_items = Item.bought_in(params[:old_month].to_sym, @user.items).sort_by &:bought_at
+      @old_items = @user.items.bought_in params[:old_month]
     end
   end
 
@@ -40,7 +40,7 @@ private
     h_date = humanize_date date
     h_date = h_date.to_s.humanize.downcase if h_date.is_a? Symbol
 
-    items = Item.bought_the(date, @user.items).sort_by &:bought_at
+    items = @user.items.bought_the date
 
     [h_date, items]
   end
