@@ -4,6 +4,12 @@ class AccountsController < ApplicationController
   before_action :set_accounts
 
   def index
+    if params[:month].present?
+      @month = params[:month]
+      @accounts = @accounts.with_items_bought_in @month
+    else
+      @month = :this_month
+    end
   end
 
   def create
