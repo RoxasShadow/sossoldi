@@ -47,7 +47,6 @@ module ApplicationHelper
 
   def next_month(month)
     month = normalize_month month
-
     month == 12 ? 1 : month + 1
   end
 end

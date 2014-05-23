@@ -14,7 +14,6 @@ class AccountsController < ApplicationController
 
   def create
     @accounts.create account_params
-
     redirect_to user_accounts_url(@user)
   end
 

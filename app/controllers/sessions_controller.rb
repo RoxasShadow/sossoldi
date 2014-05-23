@@ -26,7 +26,7 @@ private
   end
 
   def user_authenticated?(user)
-    if request.env["omniauth.auth"].present?
+    if request.env['omniauth.auth'].present?
       user.present?
     else
       user.present? && user.authenticate(params[:session][:password])

@@ -5,7 +5,7 @@ module CurrencyHelper
 
   def format_money(money, force_sign = false)
     money = case
-      when money == money.to_i then money.round
+      when money == money.to_i                   then money.round
       when money.to_s.split(?.).last.length == 1 then "#{money}0"
       else money.round 2
     end

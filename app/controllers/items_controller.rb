@@ -8,7 +8,6 @@ class ItemsController < ApplicationController
 
   def create
     @items.create item_params
-
     redirect_to user_accounts_url(@user)
   end
 
@@ -17,8 +16,7 @@ class ItemsController < ApplicationController
   end
 
   def review
-    @date, @items = review_data_for params[:date]
-
+    @date, @items         = review_data_for params[:date]
     @old_date, @old_items = review_data_for params[:old_date]
   end
 
