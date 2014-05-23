@@ -11,14 +11,6 @@ class Item < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
-  # def quantity
-  #   self.quantity || 1
-  # end
-
-  # def currency
-  #   self.currency || 'EUR'
-  # end
-
   def set_total
     self.total = price * quantity
   end

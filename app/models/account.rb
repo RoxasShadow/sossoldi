@@ -8,14 +8,6 @@ class Account < ActiveRecord::Base
   
   default_scope { order('created_at DESC') }
 
-  # def money
-  #   self.money || 0
-  # end
-
-  # def currency
-  #   self.currency || 'EUR'
-  # end
-
   def left_money
     money - items.sum(:total)
   end
