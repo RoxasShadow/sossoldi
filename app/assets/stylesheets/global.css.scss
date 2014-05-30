@@ -52,3 +52,32 @@ a {
 .label-group {
   display: inline-block;
 }
+
+.ui-datepicker-calendar,
+.ui-datepicker-year {
+  display: none;
+}
+
+.ui-datepicker {
+  padding: 0.2em;
+}
+
+footer {
+  float: right;
+  clear: both;
+
+  form {
+    padding: 8px;
+
+    input,
+    label {
+      display: none;
+    }
+
+    button {
+      border: 1px solid #000;
+      background: #eee;
+      border-radius: 99px;
+    }
+  }
+}

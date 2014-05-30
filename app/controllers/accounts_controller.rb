@@ -5,7 +5,7 @@ class AccountsController < ApplicationController
 
   def index
     if params[:month].present?
-      @month = params[:month]
+      @month    = params[:month]
       @accounts = @accounts.with_items_bought_in @month
     else
       @month = :this_month

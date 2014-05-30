@@ -15,7 +15,8 @@
   <%= render 'new_account' %>
 </div>
 
-<nav>
-  <%= link_to 'Previous month', user_accounts_path(@user, :the_previous_month) %>
-  <%= link_to 'Next month', user_accounts_path(@user, next_month(@month).to_s) %>
-</nav>
+<footer>
+  <%= simple_form_for '#', url: user_accounts_url(@user) do |f| %>
+    <%= f.input :date, input_html: { id: 'date' } %>
+  <% end %>
+</footer>
