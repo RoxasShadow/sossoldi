@@ -2,6 +2,7 @@ class AccountsController < ApplicationController
   before_action :authenticate_user
   before_action :set_user
   before_action :set_accounts
+  before_action :check_ownership
 
   def index
     if params[:month].present?
@@ -33,5 +34,9 @@ private
 
   def set_accounts
     @accounts = @user.accounts
+  end
+
+  def check_ownership
+    redirect_to accounts_url(current_user) unless @user == current_user
   end
 end

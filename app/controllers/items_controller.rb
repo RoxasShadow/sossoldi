@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   before_action :set_user
   before_action :set_account, except: %i(review monthly_review)
   before_action :set_items,   except: %i(review monthly_review)
+  before_action :check_ownership
 
   def create
     @items.create item_params
@@ -57,5 +58,9 @@ private
 
   def set_items
     @items = @account.items
+  end
+
+  def check_ownership
+    redirect_to accounts_url(current_user) unless @user == current_user
   end
 end
