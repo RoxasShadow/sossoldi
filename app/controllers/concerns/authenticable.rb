@@ -29,6 +29,10 @@ module Authenticable
   end
   alias :authenticate_user! :authenticate_user
 
+  def check_ownership
+    redirect_to user_accounts_url(current_user) unless @user == current_user
+  end
+
 private
 
   def current_user

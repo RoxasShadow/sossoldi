@@ -35,8 +35,4 @@ private
   def set_accounts
     @accounts = @user.accounts
   end
-
-  def check_ownership
-    redirect_to accounts_url(current_user) unless @user == current_user
-  end
 end
