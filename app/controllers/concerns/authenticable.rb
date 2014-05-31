@@ -9,7 +9,7 @@ module Authenticable
   end
 
   def url_after_login
-    user_accounts_url
+    user_accounts_url current_user
   end
 
   def url_after_logout
