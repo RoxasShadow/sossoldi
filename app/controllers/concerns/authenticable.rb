@@ -8,7 +8,7 @@ module Authenticable
     rescue_from NotAuthorizedError, with: :user_not_authorized
   end
 
-  def url_after_signup
+  def url_after_login
     user_accounts_url
   end
 
