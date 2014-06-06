@@ -6,7 +6,7 @@ module Money
     column_names.each do |attribute|
       if column_types[attribute].type == :float
         define_method("print_#{attribute}".to_sym) do
-          pretty_money_printing send(attribute), currency
+          pretty_money_printing send(attribute), (currency rescue account.currency)
         end
       end
     end

@@ -45,7 +45,7 @@ private
   end
 
   def item_params
-    params.required(:item).permit(:name, :quantity, :price, :currency)
+    params.required(:item).permit(:name, :details, :quantity, :price)
   end
 
   def set_user

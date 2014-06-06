@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   include Money
 
-  validates :name, :money, :currency, presence: true
+  validates :name, presence: true
 
   belongs_to :user
   has_many   :items

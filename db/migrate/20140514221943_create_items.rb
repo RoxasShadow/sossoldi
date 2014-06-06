@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration
       t.string   :details
       t.integer  :quantity, default: 1
       t.float    :price
-      t.string   :currency, default: 'EUR'
+      t.float    :total
 
       t.integer :user_id
       t.integer :account_id

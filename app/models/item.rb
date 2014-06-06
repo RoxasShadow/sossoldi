@@ -3,9 +3,9 @@ class Item < ActiveRecord::Base
   
   before_save :set_total
   
-  validates :name, :quantity, :price, :currency, presence: true
+  validates :name, :price, presence: true
 
-  belongs_to  :account
+  belongs_to :account
   
   alias_attribute :bought_at, :created_at
 
@@ -54,7 +54,7 @@ class Item < ActiveRecord::Base
     %i(left_money grand_total).each do |m|
       define_method("print_#{m}") do |abs = false, items = all|
         money = abs ? items.send(m).abs : items.send(m)
-        pretty_money_printing money, items.first.currency # TODO: currency
+        pretty_money_printing money, items.first.account.currency
       end
     end
 
