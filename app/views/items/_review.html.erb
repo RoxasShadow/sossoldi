@@ -15,11 +15,11 @@
 </p>
 
 <p>
-  Grand total: <span class="label"><%= number_to_currency(@items.grand_total, currency_info_for(account)) %></span><br>
+  Grand total: <span class="label"><%= number_to_currency(@items.grand_total, currency_info_for(@user)) %></span><br>
 </p>
 
 <% if @old_items.present? %>
   <p>
-    In <%= @old_date %> you spent <span class="label"><%= force_sign_for percentage_variation(@old_items.grand_total, @items.grand_total.round(2)).round(2) %>%</span> (aka <span class="label"><%= number_to_currency(@old_items.grand_total - @items.grand_total, currency_info_for(@items.first.account)) %></span> since <%= @old_date %> you spent <span class="label"><%= number_to_currency(@old_items.grand_total, currency_info_for(@items.first.account)) %></span>) and you bought <span class="label"><%= force_sign_for @items.count_items - @old_items.count_items %></span> things.
+    In <%= @old_date %> you spent <span class="label"><%= force_sign_for percentage_variation(@old_items.grand_total, @items.grand_total.round(2)).round(2) %>%</span> (aka <span class="label"><%= @old_items.grand_total - @items.grand_total > 0 ? '+' : '-' %><%= number_to_currency(@old_items.grand_total - @items.grand_total, currency_info_for(@user)) %></span> since <%= @old_date %> you spent <span class="label"><%= number_to_currency(@old_items.grand_total, currency_info_for(@user)) %></span>) and you bought <span class="label"><%= force_sign_for @items.count_items - @old_items.count_items %></span> things.
   </p>
 <% end %>

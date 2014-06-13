@@ -1,3 +1,3 @@
 <div class="item">
-  <span><%= item.name_and_quantity %>: <%= number_to_currency(item.total, currency_info_for(account)) %> (the <%= item.bought_at.strftime("%y/%m/%d at %H:%M") %>)</span> <%= raw("<span>#{item.details}</span>") if item.details.present? %>
+  <span><%= item.name_and_quantity %>: <%= number_to_currency(item.total, currency_info_for(@user)) %> (the <%= item.bought_at.strftime("%y/%m/%d at %H:%M") %>)</span> <%= raw("<span>#{item.details}</span>") if item.details.present? %>
 </div>
