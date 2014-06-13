@@ -19,7 +19,6 @@ class Item < ActiveRecord::Base
 
   class << self
     include ApplicationHelper
-    include CurrencyHelper
 
     def count_items(items = all)
       [].tap do |total|

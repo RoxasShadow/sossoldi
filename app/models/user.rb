@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   has_many :accounts
   has_many :items, through: :accounts
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   class << self
     def from_omniauth(auth)
       user_info = auth.extra.raw_info
@@ -31,9 +35,5 @@ class User < ActiveRecord::Base
         user.save!
       end
     end
-  end
-
-  def full_name
-    "#{first_name} #{last_name}"
   end
 end
