@@ -2,9 +2,9 @@
   <h2>
     <%= account.name %>
     <br>
-    <%= account.print_money %>
+    <%= number_to_currency account.money %>
     <% if account.left_money != account.money %>
-      (<%= "#{account.print_left_money} #{account.left_money > 0 ? 'left' : 'of debt'}" %>)
+      (<%= "#{number_to_currency(account.left_money)} #{account.left_money > 0 ? 'left' : 'of debt'}" %>)
     <% end %>
   </h2>
 

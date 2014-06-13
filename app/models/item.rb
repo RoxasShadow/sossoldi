@@ -1,6 +1,4 @@
-class Item < ActiveRecord::Base
-  include Money
-  
+class Item < ActiveRecord::Base 
   before_save :set_total
   
   validates :name, :price, presence: true
@@ -49,13 +47,6 @@ class Item < ActiveRecord::Base
           total << item.total
         end
       end.inject :+
-    end
-
-    %i(left_money grand_total).each do |m|
-      define_method("print_#{m}") do |abs = false, items = all|
-        money = abs ? items.send(m).abs : items.send(m)
-        pretty_money_printing money, items.first.account.currency
-      end
     end
 
     def bought_in(month, items = all)

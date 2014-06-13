@@ -1,6 +1,4 @@
 class Account < ActiveRecord::Base
-  include Money
-
   validates :name, presence: true
 
   belongs_to :user
@@ -8,13 +6,9 @@ class Account < ActiveRecord::Base
   
   default_scope { order('created_at DESC') }
 
-  def left_money
-    money - items.sum(:total)
-  end
-
-  def print_left_money(abs = true)
-    m = abs ? left_money.abs : left_money
-    pretty_money_printing m, currency
+  def left_money(abs = true)
+    left_money = money - items.sum(:total)
+    abs ? money.abs : left_money
   end
 
   class << self

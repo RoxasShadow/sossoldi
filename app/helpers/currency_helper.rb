@@ -1,8 +1,4 @@
 module CurrencyHelper
-  def pretty_money_printing(money, currency, force_sign = false)
-    "#{get_symbol_for currency}#{format_money money, force_sign}"
-  end
-
   def format_money(money, force_sign = false)
     money = case
       when money == money.to_i                   then money.round
