@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def force_sign_for(n)
-    n > 0 ? "+#{n}" : n.to_s
+    n >= 0 ? "+#{n}" : n.to_s
   end
 
   def numeric?(n)
