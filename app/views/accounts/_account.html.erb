@@ -2,15 +2,15 @@
   <h2>
     <%= account.name %>
     <br>
-    <%= number_to_currency account.money %>
+    <%= number_to_currency(account.money, currency_info_for(account)) %>
     <% if account.left_money != account.money %>
-      (<%= "#{number_to_currency(account.left_money)} #{account.left_money > 0 ? 'left' : 'of debt'}" %>)
+      (<%= "#{number_to_currency(account.left_money, currency_info_for(account))} #{account.left_money > 0 ? 'left' : 'of debt'}" %>)
     <% end %>
   </h2>
 
   <div class="items">
     <% account.items.bought_in(@month).each do |item| %>
-      <%= render 'item', item: item %>
+      <%= render 'item', item: item, account: account %>
     <% end %>
   </div>
 
