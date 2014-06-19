@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
   has_secure_password
+
+  has_many :accounts
+  has_many :items, through: :accounts
   
   validates :email,    presence: true, uniqueness: true
   validates :password, presence: true, on: :create
-  
-  has_many :accounts
-  has_many :items, through: :accounts
 
   def full_name
     "#{first_name} #{last_name}"

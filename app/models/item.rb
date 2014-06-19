@@ -1,18 +1,16 @@
 class Item < ActiveRecord::Base 
-  before_save :set_total
-  
-  validates :name, :price, presence: true
+  before_save { self.total = price * quantity }
 
   belongs_to :account
-  
+
   alias_attribute :bought_at, :created_at
 
-  default_scope { order('created_at DESC') }
+  validates :name, :price, presence: true
 
-  def set_total
-    self.total = price * quantity
-  end
-
+  default_scope { order('items.created_at desc') }
+  scope :bought_the, -> (date, items = all) { items.where('extract(year from items.created_at) = ? and extract(month from items.created_at) = ? and extract(day from items.created_at) = ?', date.year, date.month, date.day) }
+  scope :bought_in,  -> (month, items = all) { items.where('extract(month from items.created_at) = ? and extract(year from items.created_at) = ?', normalize_month(month), Date.today.year) }
+  
   def name_and_quantity
     "#{name} (x#{quantity})"
   end
@@ -46,16 +44,6 @@ class Item < ActiveRecord::Base
           total << item.total
         end
       end.inject :+
-    end
-
-    def bought_in(month, items = all)
-      month = normalize_month month
-
-      items.where('extract(month from items.created_at) = ? and extract(year from items.created_at) = ?', month, Date.today.year)
-    end
-
-    def bought_the(date, items = all)
-      items.where('extract(year from items.created_at) = ? and extract(month from items.created_at) = ? and extract(day from items.created_at) = ?', date.year, date.month, date.day)
     end
   end
 end
