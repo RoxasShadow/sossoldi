@@ -18,6 +18,11 @@ class AccountsController < ApplicationController
     redirect_to user_accounts_url(@user)
   end
 
+  def update
+    @user.accounts.find(params[:id]).update(account_params)
+    redirect_to :back
+  end
+
   def destroy
     redirect_to user_accounts_url(@user)
   end
@@ -25,7 +30,7 @@ class AccountsController < ApplicationController
 private
 
   def account_params
-    params.required(:account).permit(:name, :money)
+    params.required(:account).permit(:id, :name, :money)
   end
 
   def set_user

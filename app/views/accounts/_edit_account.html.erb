@@ -1,0 +1,12 @@
+<div id="edit-account-modal-form-for-<%= account.to_param %>" class="edit-account modal-form">
+  <%= simple_form_for [@user, account], data: { validate: 'parsley' } do |f| %>
+    <%= f.input :id, as: :hidden, input_html: { value: account.id } %>
+
+    <%= f.input :name  %>
+    <%= f.input :money %>
+
+    <%= f.button :submit, 'Edit account', class: 'button teal' %>
+  <% end %>
+</div>
+
+<%= link_to_modal 'Edit account', "#edit-account-modal-form-for-#{account.to_param}", class: 'btn button teal modal-form' %>
