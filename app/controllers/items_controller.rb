@@ -13,7 +13,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    redirect_to user_accounts_url(@user)
+    @items.find(params[:id]).destroy
+    redirect_to :back
   end
 
   def review
