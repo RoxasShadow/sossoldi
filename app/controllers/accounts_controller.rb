@@ -19,7 +19,7 @@ class AccountsController < ApplicationController
   end
 
   def update
-    @user.accounts.find(params[:id]).update(account_params)
+    @user.accounts.find(params[:id]).update(account_params.except(:id))
     redirect_to :back
   end
 

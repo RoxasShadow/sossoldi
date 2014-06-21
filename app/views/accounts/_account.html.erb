@@ -3,8 +3,8 @@
     <%= account.name %>
     <br>
     <%= number_to_currency(account.money, currency_info_for(@user)) %>
-    <% if account.left_money != account.money %>
-      (<%= "#{number_to_currency(account.left_money, currency_info_for(@user))} #{account.left_money > 0 ? 'left' : 'of debt'}" %>)
+    <% if account.left_money(false) != account.money %>
+      (<%= "#{number_to_currency(account.left_money(true, @month), currency_info_for(@user))} #{account.left_money(false, @month) > 0 ? 'left' : 'of debt'}" %>)
     <% end %>
   </h2>
 

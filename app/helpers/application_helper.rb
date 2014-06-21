@@ -45,6 +45,16 @@ module ApplicationHelper
     end
   end
 
+  def humanize_month(month)
+    if month.is_a? Symbol
+      month.to_s.humanize.downcase
+    elsif month.is_a? String
+      numeric?(month) ? Date::MONTHNAMES[month.to_i] : month.to_s.humanize.downcase
+    else
+      month
+    end
+  end
+
   def next_month(month)
     month = normalize_month month
     month == 12 ? 1 : month + 1

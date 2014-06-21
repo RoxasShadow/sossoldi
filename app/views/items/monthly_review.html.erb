@@ -1,5 +1,5 @@
 <div id="monthly-review" class="accounts-review">
-  <h2>Accounts review for <%= @month %></h2>
+  <h2>Accounts review for <%= @month %> <%= "comparing to #{@old_date}" if @month.downcase != @old_date.downcase %></h2>
 
   <% if @items.empty? %>
     <p>No items bought in <%= @month %> to show.</p>

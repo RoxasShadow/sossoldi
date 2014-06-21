@@ -23,11 +23,11 @@ class ItemsController < ApplicationController
   end
 
   def monthly_review
-    @month = params[:month].humanize.downcase
+    @month = humanize_month params[:month]
     @items = @user.items.bought_in params[:month]
 
     if params[:old_month].present?
-      @old_date  = params[:old_month].humanize.downcase
+      @old_date  = humanize_month params[:old_month]
       @old_items = @user.items.bought_in params[:old_month]
     end
   end
@@ -36,13 +36,12 @@ private
 
   def review_data_for(date)
     date = Date.strptime date, '%Y-%m-%d'
-    
-    h_date = humanize_date date
-    h_date = h_date.to_s.humanize.downcase if h_date.is_a? Symbol
-
     items = @user.items.bought_the date
+    
+    humanized_date = humanize_date date
+    humanized_date = humanized_date.to_s.humanize.downcase if humanized_date.is_a? Symbol
 
-    [h_date, items]
+    [humanized_date, items]
   end
 
   def item_params

@@ -1,8 +1,8 @@
 <div id="review" class="accounts-review">
-  <h2>Accounts review for <%= @date %></h2>
+  <h2>Accounts review for <%= @date.downcase %></h2>
 
   <% if @items.empty? %>
-    <p>No items bought in <%= @date %> to show.</p>
+    <p>No items bought <%= @date.downcase %> to show.</p>
   <% else %>
     <%= render 'review' %>
   <% end %>
