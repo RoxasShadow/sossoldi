@@ -5,11 +5,14 @@ class AccountsController < ApplicationController
   before_action :check_ownership
 
   def index
-    if params[:month].present?
-      @month    = params[:month]
-      @accounts = @accounts.with_items_bought_in @month
-    else
-      @month = :this_month
+    @month = params[:month] || :this_month
+
+    respond_to do |format|
+      format.html
+
+      format.json { render json: @accounts, include: :items }
+
+      format.xml { render xml: @accounts, include: :items }
     end
   end
 
@@ -38,6 +41,6 @@ private
   end
 
   def set_accounts
-    @accounts = @user.accounts
+    @accounts = params[:month].presence ? @user.accounts.with_items_bought_in(params[:month]) : @user.accounts
   end
 end
