@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 window.fbAsyncInit = ->
-  FB.init(appId: '<%= Rails.application.config.facebook[:app_id] %>', cookie: true)
+  FB.init(appId: $('[data-facebook-app-id]').attr('data-facebook-app-id'), cookie: true)
 
   $('a.facebook.signup').on click: (e) ->
     e.preventDefault()
